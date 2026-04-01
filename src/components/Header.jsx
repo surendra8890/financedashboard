@@ -11,7 +11,7 @@ export default function Header() {
         <h1>Dashboard</h1>
         <p>Welcome back. Here's your financial overview.</p>
       </div>
-      <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
+      <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
         
         {/* Role Switcher */}
         <div style={{ display: 'flex', alignItems: 'center', background: 'var(--bg-glass-5)', borderRadius: '20px', padding: '0.35rem 0.75rem', border: '1px solid var(--border-color)', transition: 'background 0.2s', cursor: 'pointer' }} title="Switch Role (RBAC Demo)">
