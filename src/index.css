@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-color: #0d1117;
+  --panel-bg: rgba(22, 27, 34, 0.7);
+  --border-color: #30363d;
+  --text-primary: #f0f6fc;
+  --text-secondary: #8b949e;
+  
+  --accent-blue: #3b82f6;
+  --accent-green: #10b981;
+  --accent-red: #ef4444;
+  --accent-purple: #8b5cf6;
+  
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+  --panel-hover-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.6);
+  --panel-hover-border: rgba(255, 255, 255, 0.12);
+  
+  --bg-gradient-start: #1a2333;
+  --badge-bg-opacity: 0.15;
+  
+  --bg-glass-5: rgba(255, 255, 255, 0.05);
+  --bg-glass-2: rgba(255, 255, 255, 0.02);
+  --bg-glass-10: rgba(255, 255, 255, 0.1);
+  --header-gradient-1: #ffffff;
+  --header-gradient-2: #8b949e;
+  --color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg-color: #f4f7fb;
+  --panel-bg: rgba(255, 255, 255, 0.85);
+  --border-color: #cbd5e1;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  
+  --glass-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
+  --glass-border: 1px solid rgba(255, 255, 255, 1);
+  --panel-hover-shadow: 0 12px 30px 0 rgba(0, 0, 0, 0.08);
+  --panel-hover-border: rgba(0, 0, 0, 0.05);
+  
+  --bg-gradient-start: #e2e8f0;
+  --badge-bg-opacity: 0.1;
+  
+  --bg-glass-5: rgba(0, 0, 0, 0.04);
+  --bg-glass-2: rgba(0, 0, 0, 0.02);
+  --bg-glass-10: rgba(0, 0, 0, 0.08);
+  --header-gradient-1: #0f172a;
+  --header-gradient-2: #475569;
+  --color-scheme: light;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  /* subtle gradient background that feels alive */
+  background: radial-gradient(circle at top right, var(--bg-gradient-start) 0%, var(--bg-color) 40%);
+  background-attachment: fixed;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dashboard-container { max-width: 1200px; margin: 0 auto; padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 2rem; }
+.header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.5rem; }
+.header h1 {
+  font-size: 2.25rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--header-gradient-1), var(--header-gradient-2));
+  background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.02em;
+}
+.header p { color: var(--text-secondary); font-size: 1.1rem; margin-top: 0.25rem; }
+
+.glass-panel {
+  background: var(--panel-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: var(--glass-border); border-radius: 20px; padding: 1.75rem; box-shadow: var(--glass-shadow);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+.glass-panel:hover {
+  transform: translateY(-4px); box-shadow: var(--panel-hover-shadow); border-color: var(--panel-hover-border);
+}
+
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.card-title { font-size: 0.95rem; color: var(--text-secondary); font-weight: 500; }
+.card-icon { padding: 0.5rem; border-radius: 12px; background: var(--bg-glass-5); }
+.icon-blue { color: var(--accent-blue); } .icon-green { color: var(--accent-green); } .icon-red { color: var(--accent-red); }
+.card-amount { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.03em; }
+.card-trend { font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem; font-weight: 500; }
+.trend-up { color: var(--accent-green); } .trend-down { color: var(--accent-red); } .trend-text { color: var(--text-secondary); font-weight: 400; }
+
+.charts-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; }
+@media (max-width: 960px) { .charts-grid { grid-template-columns: 1fr; } }
+.chart-container { height: 320px; width: 100%; margin-top: 1.5rem; }
+.section-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-primary); transition: color 0.3s ease; }
+
+.table-container { width: 100%; overflow-x: auto; }
+table { width: 100%; border-collapse: separate; border-spacing: 0; }
+th, td { padding: 1.25rem 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+th { color: var(--text-secondary); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; padding-top: 0; }
+td { font-size: 0.95rem; color: var(--text-primary); }
+tr:last-child td { border-bottom: none; }
+tr { transition: background-color 0.2s ease; }
+tr:hover td { background-color: var(--bg-glass-2); }
+
+.tx-desc { font-weight: 500; color: var(--text-primary); }
+.tx-date { color: var(--text-secondary); font-size: 0.85rem; }
+.badge { padding: 0.35rem 0.8rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; display: inline-block; }
+.badge-income { background: rgba(16, 185, 129, var(--badge-bg-opacity)); color: var(--accent-green); }
+.badge-expense { background: rgba(239, 68, 68, var(--badge-bg-opacity)); color: var(--accent-red); }
+.badge-food { background: rgba(245, 158, 11, var(--badge-bg-opacity)); color: #d97706; }
+.badge-utilities { background: rgba(59, 130, 246, var(--badge-bg-opacity)); color: #2563eb; }
+.badge-entertainment { background: rgba(139, 92, 246, var(--badge-bg-opacity)); color: #7c3aed; }
+.badge-default { background: var(--bg-glass-5); color: var(--text-secondary); }
+
+.amount-income { color: var(--accent-green); font-weight: 600; }
+.amount-expense { color: var(--accent-red); font-weight: 600; }
+
+.anim-fade-in { opacity: 0; animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.2s; } .delay-3 { animation-delay: 0.3s; } .delay-4 { animation-delay: 0.4s; }
